@@ -1,0 +1,29 @@
+import UsersListItem from '.'
+
+export const meta = {
+    type: 'component',
+    name: 'UsersListItem',
+    description: 'Styled block with custom content',
+    tags: ['component'],
+    preview: <UsersListItem>Component content here</UsersListItem>,
+    lists: {
+        attributes: [
+            { name: 'children', required: true, type: 'React.ReactNode', description: 'Content that will be rendered inside of the block' },
+            { name: 'className', type: 'string', description: 'HTML class attribute' },
+            { name: 'style', type: 'React.CSSProperties', description: 'Inline styles for the main container' },
+        ],
+    },
+    scope: { UsersListItem },
+}
+
+## Usage
+
+```jsx
+<UsersListItem className="class" style={{ color: 'red' }}>Put content here</UsersListItem>
+```
+
+## Playground
+
+```jsx live
+<UsersListItem style={{ color: 'red' }}>Content text</UsersListItem>
+```

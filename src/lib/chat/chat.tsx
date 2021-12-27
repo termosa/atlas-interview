@@ -1,44 +1,77 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback } from 'react'
+import { useHistory, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import useDefer, { Status } from 'use-defer'
 import Conversation from '../conversation'
-import ConversationsList, { Chat as ChatType, SelectChatHandler } from '../conversations-list'
 import EmptyConversation from '../empty-conversation'
-import loadChats from '../load-chats'
+import loadUsers from '../load-users'
 import LoadingScreen from '../loading-screen'
+import UsersList, { SelectUserHandler } from '../users-list'
 
 function Chat({ className, style }: ChatProps): React.ReactElement {
-    const [selectedChat, setSelectedChat] = useState<ChatType | undefined>()
-    const selectChatHandler = useCallback<SelectChatHandler>(setSelectedChat, [])
+    const history = useHistory()
+    const userId = +(useParams() as unknown as { userId: number }).userId
+    const selectUserHandler = useCallback<SelectUserHandler>((user) => history.push(`/chat/${user.id}`), [])
 
-    const chatsRequest = useDefer(loadChats, [], [])
+    const usersRequest = useDefer(loadUsers, [], [])
 
-    if (chatsRequest.status === Status.PENDING) return <LoadingScreen />
-
-    console.log({ selectedChat })
+    if (usersRequest.status === Status.PENDING) return <LoadingScreen />
 
     return (
         <Container className={className} style={style}>
             <ConversationsListColumn>
-                <ConversationsList chats={chatsRequest.value || []} onSelectChat={selectChatHandler} />
+                <UsersSelector users={usersRequest.value || []} onSelectUser={selectUserHandler} />
+                <UsersMobileSelector onChange={(e) => history.push(`/chat/${e.target.value}`)}>
+                    {!userId && <option>Choose participant to chat</option>}
+                    {usersRequest.value?.map((user) => (
+                        <option key={user.id} value={user.id}>
+                            {user.username}
+                        </option>
+                    ))}
+                </UsersMobileSelector>
             </ConversationsListColumn>
-            <ConversationColumn>
-                {selectedChat ? <Conversation chatId={selectedChat.id} /> : <EmptyConversation />}
-            </ConversationColumn>
+            <ConversationColumn>{userId ? <Conversation userId={userId} /> : <EmptyConversation />}</ConversationColumn>
         </Container>
     )
 }
 
-const Container = styled.div`
-    display: flex;
-`
-
-const ConversationsListColumn = styled.aside`
-    width: 350px;
-`
+const ConversationsListColumn = styled.aside``
 
 const ConversationColumn = styled.main`
     flex: 1 0 auto;
+`
+
+const UsersSelector = styled(UsersList)``
+
+const UsersMobileSelector = styled.select`
+    width: 100%;
+    padding: 1em;
+`
+
+const Container = styled.div`
+    display: flex;
+
+    ${ConversationsListColumn} {
+        width: 350px;
+    }
+
+    @media (min-width: 761px) {
+        ${UsersMobileSelector} {
+            display: none;
+        }
+    }
+
+    @media (max-width: 760px) {
+        flex-direction: column;
+
+        ${ConversationsListColumn} {
+            width: 100%;
+        }
+
+        ${UsersSelector} {
+            display: none;
+        }
+    }
 `
 
 export type ChatProps = {

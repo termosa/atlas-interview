@@ -10,8 +10,8 @@ const stringifyQuery = (query: Query) =>
 const patchURLWithQuery = (path: string, query?: Query) =>
     query ? `${path}${path.includes('?') ? '&' : '?'}${stringifyQuery(query)}` : path
 
-const http = ({ method = 'GET', url, query, body, headers }: Props) =>
-    fetch(patchURLWithQuery(url, query), { method, headers, body })
+const http = ({ method = 'GET', url, query, body, headers, mode, credentials }: Props) =>
+    fetch(patchURLWithQuery(url, query), { method, headers, body, mode, credentials })
 
 export default http
 
@@ -35,4 +35,6 @@ export type Props = {
     method?: Method
     headers?: Headers | string[][] | Record<string, string>
     body?: Body
+    mode?: 'cors' | 'no-cors'
+    credentials?: 'include' | 'same-origin'
 }

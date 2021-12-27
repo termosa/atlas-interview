@@ -8,7 +8,7 @@ function ChatPage({ className, style }: ChatPageProps): React.ReactElement {
 
 const FullScreenChat = styled(Chat)`
     height: 100vh;
-    width: 100vh;
+    width: 100vw;
 `
 
 export type ChatPageProps = {

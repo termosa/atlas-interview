@@ -1,0 +1,29 @@
+import ConversationForm from '.'
+
+export const meta = {
+    type: 'component',
+    name: 'ConversationForm',
+    description: 'Styled block with custom content',
+    tags: ['component'],
+    preview: <ConversationForm>Component content here</ConversationForm>,
+    lists: {
+        attributes: [
+            { name: 'children', required: true, type: 'React.ReactNode', description: 'Content that will be rendered inside of the block' },
+            { name: 'className', type: 'string', description: 'HTML class attribute' },
+            { name: 'style', type: 'React.CSSProperties', description: 'Inline styles for the main container' },
+        ],
+    },
+    scope: { ConversationForm },
+}
+
+## Usage
+
+```jsx
+<ConversationForm className="class" style={{ color: 'red' }}>Put content here</ConversationForm>
+```
+
+## Playground
+
+```jsx live
+<ConversationForm style={{ color: 'red' }}>Content text</ConversationForm>
+```

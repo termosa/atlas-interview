@@ -33,6 +33,8 @@ export default function api<Response = Record<string, unknown>, Body = FormData 
             ...headers,
         },
         body: body instanceof FormData ? new URLSearchParams(body) : JSON.stringify(body),
+        mode: 'cors',
+        credentials: 'include'
     })
         .then((response) => {
             if (parseResponse) return parseResponse(response, defaultParseResponse)
