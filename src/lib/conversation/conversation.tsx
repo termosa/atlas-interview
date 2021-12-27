@@ -30,8 +30,6 @@ function Conversation({ userId, className, style }: ConversationProps): React.Re
 }
 
 const Wrapper = styled.div`
-    text-align: center;
-    background: pink;
     padding: 2em;
     height: 100%;
     box-sizing: border-box;

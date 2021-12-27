@@ -21,7 +21,7 @@ function Chat({ className, style }: ChatProps): React.ReactElement {
         <Container className={className} style={style}>
             <ConversationsListColumn>
                 <UsersSelector users={usersRequest.value || []} onSelectUser={selectUserHandler} />
-                <UsersMobileSelector onChange={(e) => history.push(`/chat/${e.target.value}`)}>
+                <UsersMobileSelector onChange={(e) => history.push(`/chat/${e.target.value}`)} value={userId}>
                     {!userId && <option>Choose participant to chat</option>}
                     {usersRequest.value?.map((user) => (
                         <option key={user.id} value={user.id}>
