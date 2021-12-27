@@ -1,7 +1,5 @@
 import http, { Query, Method } from '../http'
 
-const getApiToken = () => 'no-token-yet'
-
 const defaultParseResponse = <APIResponse>(response: Response): Promise<APIResponse> =>
     response
         .text()
@@ -14,10 +12,10 @@ const defaultParseResponse = <APIResponse>(response: Response): Promise<APIRespo
             return Promise.reject(result)
         })
 
-export default function api<Response = Record<string, unknown>, Body = Record<string, unknown> | Array<unknown>>({
+export default function api<Response = Record<string, unknown>, Body = FormData | Record<string, unknown> | Array<unknown>>({
     method,
     path,
-    base = 'http://api.com',
+    base = 'http://127.0.0.1:8000',
     query,
     body,
     headers,
@@ -28,14 +26,13 @@ export default function api<Response = Record<string, unknown>, Body = Record<st
         query,
         method,
         headers: {
-            ...(getApiToken() && { Authorization: `Bearer ${getApiToken()}` }),
-            ...(!(body instanceof FormData) && {
+            ...(!(body instanceof FormData) ? {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
-            }),
+            } : { 'Content-Type': 'application/x-www-form-urlencoded' }),
             ...headers,
         },
-        body: body instanceof FormData ? body : JSON.stringify(body),
+        body: body instanceof FormData ? new URLSearchParams(body) : JSON.stringify(body),
     })
         .then((response) => {
             if (parseResponse) return parseResponse(response, defaultParseResponse)
@@ -43,7 +40,7 @@ export default function api<Response = Record<string, unknown>, Body = Record<st
         })
 }
 
-export type Props<APIResponse, Body> = {
+export type Props<APIResponse, Body = FormData | Record<string, unknown> | Array<unknown>> = {
     path: string
     base?: string
     query?: Query

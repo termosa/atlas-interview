@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import LoginPage from '../login-page'
 import NotFoundPage from '../not-found-page'
 
 function App({ className, style }: AppProps): React.ReactElement {
@@ -8,7 +9,8 @@ function App({ className, style }: AppProps): React.ReactElement {
         <AppContainer className={className} style={style}>
             <Router>
                 <Switch>
-                    <Route exact path="/" component={() => <h1>Atlas</h1>} />
+                    <Route exact path="/" component={LoginPage} />
+                    <Route exact path="/chat" component={() => <h1>Atlas</h1>} />
                     <Route component={NotFoundPage} />
                 </Switch>
             </Router>
