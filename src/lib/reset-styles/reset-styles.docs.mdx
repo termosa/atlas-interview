@@ -1,0 +1,20 @@
+import ResetStyles from '.'
+
+export const meta = {
+    type: 'component',
+    name: 'ResetStyles',
+    description: 'Reset CSS rules using Necolas library and adds some basic page styles',
+    tags: ['component', 'styles'],
+    lists: {
+        attributes: [
+            { name: 'mountPointSelector', required: true, type: 'string', description: 'CSS selector to the element where app is mounted' },
+        ],
+    },
+    scope: { ResetStyles },
+}
+
+## Usage
+
+```jsx
+<ResetStyles offset={2} />
+```

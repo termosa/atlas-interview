@@ -1,0 +1,14 @@
+import React from 'react'
+import { createGlobalStyle } from 'styled-components'
+
+const {{ pascalCase name }} = createGlobalStyle<{{ pascalCase name }}Props>`
+    body {
+        margin: ${p => p.offset || 0}px;
+    }
+`
+
+export type {{ pascalCase name }}Props = {
+    offset?: number;
+}
+
+export default React.memo({{ pascalCase name }})

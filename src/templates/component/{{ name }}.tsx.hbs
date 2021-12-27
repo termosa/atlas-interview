@@ -1,0 +1,24 @@
+import React from 'react'
+import styled from 'styled-components'
+
+function {{ pascalCase name }}({ children, className, style }: {{ pascalCase name }}Props): React.ReactElement {
+    return (
+        <Wrapper className={className} style={style}>
+            {children}
+        </Wrapper>
+    )
+}
+
+const Wrapper = styled.div`
+    text-align: center;
+    background: pink;
+    padding: 2em;
+`
+
+export type {{ pascalCase name }}Props = {
+    children: React.ReactNode
+    className?: string
+    style?: React.CSSProperties
+}
+
+export default React.memo({{ pascalCase name }})

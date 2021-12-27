@@ -1,0 +1,20 @@
+import {{ pascalCase name }} from '.'
+
+export const meta = {
+    type: 'component',
+    name: '{{ pascalCase name }}',
+    description: 'Global style that changes body margin',
+    tags: ['component', 'styles'],
+    lists: {
+        attributes: [
+            { name: 'offset', required: false, type: 'number', description: 'Body margin in pixels' },
+        ],
+    },
+    scope: { {{ pascalCase name }} },
+}
+
+## Usage
+
+```jsx
+<{{ pascalCase name }} offset={2} />
+```

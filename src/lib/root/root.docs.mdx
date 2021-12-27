@@ -1,0 +1,29 @@
+import Root from '.'
+
+export const meta = {
+    type: 'component',
+    name: 'Root',
+    description: 'Styled block with custom content',
+    tags: ['component'],
+    preview: <Root>Component content here</Root>,
+    lists: {
+        attributes: [
+            { name: 'children', required: true, type: 'React.ReactNode', description: 'Content that will be rendered inside of the block' },
+            { name: 'className', type: 'string', description: 'HTML class attribute' },
+            { name: 'style', type: 'React.CSSProperties', description: 'Inline styles for the main container' },
+        ],
+    },
+    scope: { Root },
+}
+
+## Usage
+
+```jsx
+<Root className="class" style={{ color: 'red' }}>Put content here</Root>
+```
+
+## Playground
+
+```jsx live
+<Root style={{ color: 'red' }}>Content text</Root>
+```

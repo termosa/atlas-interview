@@ -1,0 +1,21 @@
+import NotFoundPage from '.'
+
+export const meta = {
+    type: 'component',
+    name: 'NotFoundPage',
+    description: 'Shows empty page',
+    tags: ['component'],
+    lists: {
+        attributes: [
+            { name: 'className', type: 'string', description: 'HTML class attribute' },
+            { name: 'style', type: 'React.CSSProperties', description: 'Inline styles for the main container' },
+        ],
+    },
+    scope: { NotFoundPage },
+}
+
+## Playground
+
+```jsx live
+<NotFoundPage />
+```
