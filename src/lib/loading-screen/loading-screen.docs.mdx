@@ -1,0 +1,29 @@
+import LoadingScreen from '.'
+
+export const meta = {
+    type: 'component',
+    name: 'LoadingScreen',
+    description: 'Styled block with custom content',
+    tags: ['component'],
+    preview: <LoadingScreen>Component content here</LoadingScreen>,
+    lists: {
+        attributes: [
+            { name: 'children', required: true, type: 'React.ReactNode', description: 'Content that will be rendered inside of the block' },
+            { name: 'className', type: 'string', description: 'HTML class attribute' },
+            { name: 'style', type: 'React.CSSProperties', description: 'Inline styles for the main container' },
+        ],
+    },
+    scope: { LoadingScreen },
+}
+
+## Usage
+
+```jsx
+<LoadingScreen className="class" style={{ color: 'red' }}>Put content here</LoadingScreen>
+```
+
+## Playground
+
+```jsx live
+<LoadingScreen style={{ color: 'red' }}>Content text</LoadingScreen>
+```

@@ -10,8 +10,8 @@ function CenteredLayout({ children, className, style, direction = 'column' }: Ce
 }
 
 const Layout = styled.div<{ direction: 'column' | 'row' }>`
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: ${(p) => p.direction};
     justify-content: center;

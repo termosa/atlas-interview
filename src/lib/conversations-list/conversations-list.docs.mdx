@@ -1,0 +1,29 @@
+import ConversationsList from '.'
+
+export const meta = {
+    type: 'component',
+    name: 'ConversationsList',
+    description: 'Styled block with custom content',
+    tags: ['component'],
+    preview: <ConversationsList>Component content here</ConversationsList>,
+    lists: {
+        attributes: [
+            { name: 'children', required: true, type: 'React.ReactNode', description: 'Content that will be rendered inside of the block' },
+            { name: 'className', type: 'string', description: 'HTML class attribute' },
+            { name: 'style', type: 'React.CSSProperties', description: 'Inline styles for the main container' },
+        ],
+    },
+    scope: { ConversationsList },
+}
+
+## Usage
+
+```jsx
+<ConversationsList className="class" style={{ color: 'red' }}>Put content here</ConversationsList>
+```
+
+## Playground
+
+```jsx live
+<ConversationsList style={{ color: 'red' }}>Content text</ConversationsList>
+```

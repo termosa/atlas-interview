@@ -1,0 +1,29 @@
+import EmptyConversation from '.'
+
+export const meta = {
+    type: 'component',
+    name: 'EmptyConversation',
+    description: 'Styled block with custom content',
+    tags: ['component'],
+    preview: <EmptyConversation>Component content here</EmptyConversation>,
+    lists: {
+        attributes: [
+            { name: 'children', required: true, type: 'React.ReactNode', description: 'Content that will be rendered inside of the block' },
+            { name: 'className', type: 'string', description: 'HTML class attribute' },
+            { name: 'style', type: 'React.CSSProperties', description: 'Inline styles for the main container' },
+        ],
+    },
+    scope: { EmptyConversation },
+}
+
+## Usage
+
+```jsx
+<EmptyConversation className="class" style={{ color: 'red' }}>Put content here</EmptyConversation>
+```
+
+## Playground
+
+```jsx live
+<EmptyConversation style={{ color: 'red' }}>Content text</EmptyConversation>
+```

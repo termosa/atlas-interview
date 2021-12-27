@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import LoginPage from '../login-page'
 import NotFoundPage from '../not-found-page'
+import ChatPage from '../chat-page'
 
 function App({ className, style }: AppProps): React.ReactElement {
     return (
@@ -10,7 +11,7 @@ function App({ className, style }: AppProps): React.ReactElement {
             <Router>
                 <Switch>
                     <Route exact path="/" component={LoginPage} />
-                    <Route exact path="/chat" component={() => <h1>Atlas</h1>} />
+                    <Route exact path="/chat" component={ChatPage} />
                     <Route component={NotFoundPage} />
                 </Switch>
             </Router>
